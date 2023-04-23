@@ -1,0 +1,72 @@
+<h1 style="text-align: justify; color: blue;">Crie sua conta!</h1>
+<br>
+<form action="" method="post">
+   {{ form.hidden_tag() }}
+   <div>
+      {{ form.nome(placeholder="nome",
+      style='width: 50%;
+      font-weight: bold;
+      padding: 12px 20px ;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box') }}
+      {% for error in form.nome.errors %}
+      <p>{{ error }}</p>
+      {% endfor %}
+   </div>
+   <br>
+   <div>
+      {{ form.email(placeholder="email",
+      style='width: 50%;
+      font-weight: bold;
+      padding: 12px 20px ;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box') }}
+      {% for error in form.email.errors %}
+      <p>{{ error }}</p>
+      {% endfor %}
+   </div>
+   <br>
+   <div>
+      {{ form.senha1(placeholder="senha",
+      style='width: 50%;
+      font-weight: bold;
+      padding: 12px 20px ;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box') }}
+      {% for error in form.senha1.errors %}
+      <p>{{ error }}</p>
+      {% endfor %}
+   </div>
+   <br>
+   <div>
+      {{ form.senha2(placeholder="confirme a senha",
+      style='width: 50%;
+      font-weight: bold;
+      padding: 12px 20px ;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box') }}
+      {% for error in form.senha2.errors %}
+      <p>{{ error }}</p>
+      {% endfor %}
+   </div>
+   <br>
+   <div>{{ form.submit(
+      style ='background-color: #4CAF50;
+      color: white;
+      width: 50%;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px') }}
+   </div>
+</form>
+<p></p>
+<h3 style = "color: blue; margin-left:100px;"><a href="{{ url_for('login') }}">Já tem uma conta?</a></h3>
