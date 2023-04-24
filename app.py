@@ -6,6 +6,7 @@ from flask_login import LoginManager, login_user, login_manager, current_user, l
 from flask import Flask, render_template, flash, redirect, url_for, request
 from forms.forms import FormularioRegistro, FormularioLogin
 from models.user import User
+from helpers.database import migrate, db
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -15,10 +16,15 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-db = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
 login_manager.init_app(app)
+db.init_app(app)
+migrate.init_app(app, db)
+
+@app.before_first_request
+def create_database():
+     db.create_all()
 
 
 @login_manager.user_loader
@@ -33,7 +39,7 @@ def home():
 def register():
     form = FormularioRegistro()
     if form.validate_on_submit():
-        user = User(username=form.nome.data, email=form.email.data)
+        user = User(nome=form.nome.data, email=form.email.data, endereco=form.endereco.data, senha_hash=form.senha1.data)
         user.set_senha(form.senha1.data)
         db.session.add(user)
         db.session.commit()
@@ -44,7 +50,7 @@ def register():
 def login():
     form = FormularioLogin()
     if form.validate_on_submit():
-        user = User.query.filter_by(email = form.email.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.check_senha(form.senha.data):
             login_user(user)
             proximo = request.args.get("proximo")

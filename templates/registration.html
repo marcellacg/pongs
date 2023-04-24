@@ -31,6 +31,20 @@
    </div>
    <br>
    <div>
+      {{ form.endereco(placeholder="logradouro, número, cidade, estado",
+      style='width: 50%;
+      font-weight: bold;
+      padding: 12px 20px ;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box') }}
+      {% for error in form.endereco.errors %}
+      <p>{{ error }}</p>
+      {% endfor %}
+   </div>
+   <br>
+   <div>
       {{ form.senha1(placeholder="senha",
       style='width: 50%;
       font-weight: bold;
