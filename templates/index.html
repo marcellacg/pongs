@@ -1,11 +1,12 @@
 <div>
   
-    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('home') }}">Página inicial</a>
     {% if current_user.is_anonymous %}
+    <br>
     <a href="{{ url_for('login') }}">Login</a>
     {% else %}
-    <p>Welcome {{current_user.username}}</p>
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <p>Bem vindo(a)! {{current_user.username}}</p>
+    <a href="{{ url_for('logout') }}">Sair</a>
     {% endif %}
     
   </div>

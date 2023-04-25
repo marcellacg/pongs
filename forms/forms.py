@@ -10,10 +10,10 @@ class FormularioRegistro(FlaskForm):
     endereco = StringField('endereco', validators=[DataRequired()])
     senha1 = PasswordField('senha', validators = [DataRequired()])
     senha2 = PasswordField('confirmar senha', validators = [DataRequired(),EqualTo('senha1')])
-    submit = SubmitField('register')
+    submit = SubmitField('registrar')
 
 class FormularioLogin(FlaskForm):
     email = StringField('email',validators=[DataRequired(), Email()])
     senha = PasswordField('senha', validators=[DataRequired()])
-    remember = BooleanField('Remember Me',validators= [DataRequired()])
+    remember = BooleanField('Lembre-me',validators= [DataRequired()])
     submit = SubmitField('login')

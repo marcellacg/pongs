@@ -1,5 +1,5 @@
-<h1><a href="{{ url_for('register') }}">Crie uma nova conta!</a></h1>
-<form action="" method="post">
+<h1 style="text-align: center; color: rgb(26, 158, 103); text-decoration: none;">Login</h1>
+<form style="text-align: center;" action="" method="post">
    {{ form.hidden_tag() }}
    <div>
       {{ form.email(placeholder="email",
@@ -8,13 +8,12 @@
       padding: 12px 20px ;
       margin: 8px 0;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 10px;
       box-sizing: border-box') }}
       {% for error in form.email.errors %}
       <p>{{ error }}</p>
       {% endfor %}
    </div>
-   <br>
    <div>
       {{ form.senha(placeholder="senha",
       style='width: 50%;
@@ -22,7 +21,7 @@
       padding: 12px 20px ;
       margin: 8px 0;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 10px;
       box-sizing: border-box') }}
       {% for error in form.senha.errors %}
       <p>{{ error }}</p>
@@ -38,6 +37,8 @@
       border-radius: 4px') }}
    </p>
 </form>
+
+<h3 style="text-align: center; color: rgb(26, 158, 103); text-decoration: none;"><a href="{{ url_for('register') }}">Crie uma nova conta!</a></h3>
 
 {% for message in get_flashed_messages() %}
 <p style="color: red;">Error : {{ message }}</p>
