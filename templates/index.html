@@ -5,8 +5,11 @@
     <br>
     <a href="{{ url_for('login') }}">Login</a>
     {% else %}
-    <p>Bem vindo(a)! {{current_user.username}}</p>
+    <p>Bem vindo(a)! {{current_user.nome}}</p>
     <a href="{{ url_for('logout') }}">Sair</a>
     {% endif %}
     
+  </div>
+  <div>
+    <a href="{{ url_for('cadastroPet')}}"> Cadastrar pet</a>
   </div>

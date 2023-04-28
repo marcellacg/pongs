@@ -2,10 +2,12 @@ import os
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, login_user, login_manager, current_user, login_required, login_user, logout_user
+from flask_session import Session
+from flask_login import LoginManager, login_manager, current_user, login_required, login_user, logout_user
 from flask import Flask, render_template, flash, redirect, url_for, request
-from forms.forms import FormularioRegistro, FormularioLogin
+from forms.forms import FormularioRegistro, FormularioLogin, FormularioPet
 from models.user import User
+from models.pet import Pets
 from helpers.database import migrate, db
 
 app = Flask(__name__)
@@ -46,6 +48,7 @@ def register():
         return redirect(url_for('login'))
     return render_template('registration.html', form=form)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = FormularioLogin()
@@ -58,6 +61,7 @@ def login():
         flash('Endereço de email e/ou senha inválidos.')    
     return render_template('login.html', form=form)
 
+
 @app.route("/forbidden", methods=['GET', 'POST'])
 @login_required
 def protected():
@@ -68,6 +72,16 @@ def protected():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route('/cadastrarpet', methods=['GET', 'POST'])
+def cadastroPet():
+    form = FormularioPet()
+    if form.validate_on_submit():
+        pet = Pets(nome=form.nomePet.data, idade=form.idade.data, especie=form.especie.data, observacoes=form.observacoes.data)
+        db.session.add(pet)
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('cadastropet.html', form=form)
 
 if __name__ == "__main__":
     app.run(debug=True)
