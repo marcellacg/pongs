@@ -17,7 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://marcella:409014@localhost:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
-
+#0558b6f4b29f
 
 login_manager = LoginManager(app)
 login_manager.init_app(app)
@@ -82,6 +82,29 @@ def cadastroPet():
         db.session.commit()
         return redirect(url_for('home'))
     return render_template('cadastropet.html', form=form)
+
+
+@app.route('/allpets', methods=['GET'])
+@login_required
+
+def getPet():
+    #user_id = User.query.filter_by(user_id=user_id).one()
+    allpets = Pets.query.all()
+
+    lista_pets = []
+    for pet in allpets:
+        pet_info = {
+            'id': pet.id,
+            'nome': pet.nome,
+            'idade': pet.idade,
+            'especie': pet.especie,
+            'observacoes': pet.observacoes
+        }
+        lista_pets.append(pet_info)
+        #return redirect('/{}/allpets'.format())
+    return render_template('getpet.html', allpets=lista_pets)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
