@@ -1,16 +1,1 @@
-<div>
-  
-    <a href="{{ url_for('home') }}">Página inicial</a>
-    {% if current_user.is_anonymous %}
-    <br>
-    <a href="{{ url_for('login') }}">Login</a>
-    {% else %}
-    <p>Bem vindo(a)! {{current_user.nome}}</p>
-    <a href="{{ url_for('logout') }}">Sair</a>
-    {% endif %}
-    
-  </div>
-  <div>
-    <a href="{{ url_for('cadastroPet')}}"> Cadastrar pet</a>
-    <a href="{{ url_for('getPet')}}"> Visualizar pets</a>
-  </div>
+

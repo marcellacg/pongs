@@ -12,3 +12,4 @@ class Pets(UserMixin, db.Model):
   observacoes = db.Column(db.String(500))
   
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+

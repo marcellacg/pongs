@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import update, select
 from flask_session import Session
 from flask_login import LoginManager, login_manager, current_user, login_required, login_user, logout_user
 from flask import Flask, render_template, flash, redirect, url_for, request
@@ -17,12 +18,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://marcella:409014@localhost:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
-#0558b6f4b29f
 
 login_manager = LoginManager(app)
 login_manager.init_app(app)
 db.init_app(app)
 migrate.init_app(app, db)
+
 
 @app.before_first_request
 def create_database():
@@ -35,7 +36,7 @@ def load_user(user_id):
 
 @app.route('/home')
 def home():
-    return render_template('index.html')
+    return render_template('user.html')
 
 @app.route('/register', methods = ['POST','GET'])
 def register():
@@ -84,24 +85,34 @@ def cadastroPet():
     return render_template('cadastropet.html', form=form)
 
 
-@app.route('/allpets', methods=['GET'])
+@app.route('/allpets/', methods=['GET'])
 @login_required
 
 def getPet():
-    #user_id = User.query.filter_by(user_id=user_id).one()
-    allpets = Pets.query.all()
+    #ID USER CAPTURADO
+    if current_user.is_authenticated:
+        user = User()
+        user.user_id = current_user.id
+        user_id = user.user_id
 
-    lista_pets = []
-    for pet in allpets:
-        pet_info = {
-            'id': pet.id,
-            'nome': pet.nome,
-            'idade': pet.idade,
-            'especie': pet.especie,
-            'observacoes': pet.observacoes
-        }
-        lista_pets.append(pet_info)
-        #return redirect('/{}/allpets'.format())
+
+        #LISTA DE PETS
+        allpets = Pets.query.all()
+
+        lista_pets = []
+        
+        for pet in allpets:
+            pet_info = {
+                'id': pet.id,
+                'nome': pet.nome,
+                'idade': pet.idade,
+                'especie': pet.especie,
+                'observacoes': pet.observacoes
+            }
+
+            lista_pets.append(pet_info)
+
+            #return redirect(f'/{}/allpets')
     return render_template('getpet.html', allpets=lista_pets)
 
 

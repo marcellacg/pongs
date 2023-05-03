@@ -23,3 +23,4 @@ class User(UserMixin, db.Model):
       return check_password_hash(self.senha_hash, senha)
   
   
+  
