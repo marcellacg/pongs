@@ -100,7 +100,6 @@ def getPet():
         allpets = Pets.query.all()
 
         lista_pets = []
-        
         for pet in allpets:
             pet_info = {
                 'id': pet.id,
