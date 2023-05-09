@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Meus Pets</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
@@ -42,18 +42,17 @@ margin: 0.3%;
 <body>
     <header>
         <nav class="navbar navbar-dark bg-inverse" style="background-color:#4CAF50;">
-          <a class="navbar-brand" href="#">Pets Cadastrados</a>
+          <a class="navbar-brand" href="#">Meus pets</a>
         </nav>
       </header>  
     {% for pet in allpets %}
     <div class="card w-50">
         <div class="card-body">
-          <h5 class="card-title">PET INFO</h5>
-          <p class="card-text">Nome: {{pet.nome}}</p>
+          <h5 class="card-title">PET INFO.: {{pet.nome}}</h5>
           <p class="card-text">Idade: {{pet.idade}}</p>
           <p class="card-text">Espécie: {{pet.especie}}</p>
           <p class="card-text">Observações: {{pet.observacoes}}</p>
-          <a href="#" class="btn btn-danger">Deletar</a>
+          <a href="{{ url_for('deletePet') }}" class="btn btn-danger">Deletar</a>
           <a href="#" class="btn btn-primary">Editar</a>
           
         </div>
