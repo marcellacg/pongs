@@ -101,20 +101,20 @@ def cadastroPet():
 #         return redirect(url_for('cadastroPet'))
 
 
-@app.route('/allpets/', methods=['GET'])
+@app.route('/allpets/', methods=['GET', 'POST'])
 @login_required
-
 def getPet():
     #ID USER CAPTURADO
     if current_user.is_authenticated:
         user = User()
-        user.user_id = current_user.id
-        user_id = user.user_id
-        user = User.query.get(user_id)
+        user.current_user_id = current_user.id
+        current_user_id = user.current_user_id
+        #pegando ID via-current_id
+        # user1 = User.query.get(current_user_id)
 
-        pet_test = Pets()
-        pet_user_id = pet_test.user_id
-        pet_user_id_ = Pets.query.get(pet_user_id)
+        # pet_test = Pets()
+        # user = pet_test.user1
+        # pet_user_id_ = Pets.query.get(user)
 
         pet = Pets()
         #LISTA DE PETS
@@ -132,8 +132,8 @@ def getPet():
             }
             lista_pets.append(pet_info)
 
-            return redirect(f'/allpets/{pet_user_id_}')
-        return render_template('getpet.html', allpets=lista_pets)
+            #return redirect(f'/allpets/{pet_user_id_}')
+        return render_template('pet.html', allpets=lista_pets)
 
 
 @app.route('/allpets/', methods=['POST'])
