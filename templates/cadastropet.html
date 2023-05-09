@@ -1,6 +1,9 @@
 <h1 style="text-align: center; color: rgb(26, 158, 103); text-decoration: none;">Cadastrar Pet</h1>
 <form style="text-align: center;" action="" method="post">
     {{ form.hidden_tag()}}
+    {% if current_user.is_authenticated %}
+        Usuário desta sessão: {{ current_user.nome }}, {{current_user.id}}
+    {% endif %}
     <div>
         {{ form.nomePet(placeholder="nome do pet",
         style='width: 50%;

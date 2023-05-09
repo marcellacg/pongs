@@ -2,7 +2,6 @@ import os
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import update, select
 from flask_session import Session
 from flask_login import LoginManager, login_manager, current_user, login_required, login_user, logout_user
 from flask import Flask, render_template, flash, redirect, url_for, request
@@ -78,11 +77,28 @@ def logout():
 def cadastroPet():
     form = FormularioPet()
     if form.validate_on_submit():
-        pet = Pets(nome=form.nomePet.data, idade=form.idade.data, especie=form.especie.data, observacoes=form.observacoes.data)
+        user_id = current_user.id
+        pet = Pets(nome=form.nomePet.data, idade=form.idade.data, especie=form.especie.data, observacoes=form.observacoes.data, user_id=user_id)
         db.session.add(pet)
         db.session.commit()
         return redirect(url_for('home'))
     return render_template('cadastropet.html', form=form)
+
+# def check_pet():
+#     allpets = Pets.query.all()
+#     lista_pets = []
+#     if pets in allpets:
+#         pet_info = {
+#             'id': pets.id,
+#             'nome': pets.nome,
+#             'idade': pets.idade,
+#             'especie': pets.especie,
+#             'observacoes': pets.observacoes
+#         }
+#         lista_pets.append(pet_info)
+        
+#         flash('Pet já cadastrado.')
+#         return redirect(url_for('cadastroPet'))
 
 
 @app.route('/allpets/', methods=['GET'])
@@ -94,13 +110,19 @@ def getPet():
         user = User()
         user.user_id = current_user.id
         user_id = user.user_id
+        user = User.query.get(user_id)
 
+        pet_test = Pets()
+        pet_user_id = pet_test.user_id
+        pet_user_id_ = Pets.query.get(pet_user_id)
 
+        pet = Pets()
         #LISTA DE PETS
         allpets = Pets.query.all()
 
         lista_pets = []
         for pet in allpets:
+
             pet_info = {
                 'id': pet.id,
                 'nome': pet.nome,
@@ -108,11 +130,29 @@ def getPet():
                 'especie': pet.especie,
                 'observacoes': pet.observacoes
             }
-
             lista_pets.append(pet_info)
 
-            #return redirect(f'/{}/allpets')
-    return render_template('getpet.html', allpets=lista_pets)
+            return redirect(f'/allpets/{pet_user_id_}')
+        return render_template('getpet.html', allpets=lista_pets)
+
+
+@app.route('/allpets/', methods=['POST'])
+@login_required
+
+def deletePet():
+    if current_user.is_authenticated:
+
+        pet = Pets.query.first()
+        if pet:
+            # db.session.delete(pet)
+            # db.session.commit()
+            # return redirect(url_for('home'))
+            return pet.id
+        else:
+            return flash('Nao encontrado')
+    else:
+        return redirect(url_for('forbidden'))
+
 
 
 

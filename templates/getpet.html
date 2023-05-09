@@ -16,6 +16,7 @@
                         <p>{{ pet.idade}}</p>
                         <p>{{ pet.especie}}</p>
                         <p>{{ pet.observacoes}}</p>
+                        <a href="{{ url_for('deletePet') }}">Deletar</a>
                     </div>
                 </div>
             {% endfor %}
