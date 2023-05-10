@@ -78,27 +78,12 @@ def cadastroPet():
     form = FormularioPet()
     if form.validate_on_submit():
         user_id = current_user.id
-        pet = Pets(nome=form.nomePet.data, idade=form.idade.data, especie=form.especie.data, observacoes=form.observacoes.data, user_id=user_id)
+	   user = User.query.get(user_id)          
+        pet = Pets(nome=form.nomePet.data, idade=form.idade.data, especie=form.especie.data, observacoes=form.observacoes.data, user=user)          
         db.session.add(pet)
         db.session.commit()
         return redirect(url_for('home'))
     return render_template('cadastropet.html', form=form)
-
-# def check_pet():
-#     allpets = Pets.query.all()
-#     lista_pets = []
-#     if pets in allpets:
-#         pet_info = {
-#             'id': pets.id,
-#             'nome': pets.nome,
-#             'idade': pets.idade,
-#             'especie': pets.especie,
-#             'observacoes': pets.observacoes
-#         }
-#         lista_pets.append(pet_info)
-        
-#         flash('Pet já cadastrado.')
-#         return redirect(url_for('cadastroPet'))
 
 
 @app.route('/allpets/', methods=['GET', 'POST'])
