@@ -8,8 +8,18 @@ class Pets(UserMixin, db.Model):
   id = db.Column(db.Integer, primary_key=True)
   nome = db.Column(db.String(50))
   idade = db.Column(db.String(4))
-  especie = db.Column(db.String())
-  observacoes = db.Column(db.String(500))
+  especie = db.Column(db.String()) #TODO: Criar a entidade Especie
+  observacoes = db.Column(db.String(500)) #TODO: transformar num relacionamento 1..n
   
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+  
+  user = db.relationship("User", uselist=False)
+  
+  def __init__(self, nome, idade, especie, observacoes, user):
+    self.nome = nome
+    self.idade = idade
+    self.especie = especie
+    self.observacoes = observacoes
+    self.user = user
+    
 
