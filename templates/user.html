@@ -11,13 +11,16 @@
 <style>
   div{
     text-align: center;
-    margin-top: 6%;
-    margin-left: 1%;
-    margin-right: 1%;
+    margin-top: 1%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
     display: inline-block;
+    padding-left: 3%;
+    padding-right: 3%;
   }
+  
   br, h4{
-    margin-top: 6%;
+    margin-top: 2%;
   }
   
   
@@ -25,67 +28,69 @@
 </head>
 
 <body>
+  <header>
+    <nav class="navbar navbar-dark bg-inverse" style="background-color:#4CAF50;">
+      <a class="navbar-brand" href="{{ url_for('home') }}">Página Inicial</a>
+    </nav>
+  </header>
     <div>
-  
-        <a href="{{ url_for('home') }}">Página inicial</a>
         {% if current_user.is_anonymous %}
         <br>
         <a href="{{ url_for('login') }}">Login</a>
         {% else %}
-        <p>Bem vindo(a)! {{current_user.nome}}</p>
-        
-        
+        <p>Bem vindo(a)! {{current_user.nome}}</p>     
       </div>
 
   <div class="row row-cols-1 row-cols-md-3">
-    <div class="col mb-4">
+    <div style="padding-right: 0.1%;" class="col mb-4">
       <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="https://images.unsplash.com/photo-1530700131180-d43d9b8cc41f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=834&q=80" class="card-img-top" alt="Serviço passeio no parque">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">testando</p>
-          <a  href="#" class="btn btn-info">Serviço2</a>
+          <h5 class="card-title">PASSEIO NO PARQUE</h5>
+          <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore quod obcaecati debitis harum voluptatem.</p>
+          <a style="background-color:#4CAF50; border-color: #4CAF50;" href="#" class="btn btn-info">Cadastrar</a>
         </div>
       </div>
     </div>
-    <div class="col mb-4">
+    <div style="padding-right: 0.1%;" class="col mb-4">
       <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="https://plus.unsplash.com/premium_photo-1661723698664-fcfef3f355ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a short card.</p>         
-          <a  href="#" class="btn btn-info">Serviço2</a>     
+          <h5 class="card-title">DIA LEGAL</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat ullam magni cumque perferendis ipsa.</p>         
+          <a style="background-color:#4CAF50; border-color: #4CAF50;"  href="#" class="btn btn-info">Cadastrar</a>     
         </div>
       </div>
     </div>
-    <div class="col mb-4">
+    <div style="padding-right: 0.1%;" class="col mb-4">
       <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=860&q=80" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">testando.</p>
-          <a  href="{{ url_for('cadastroPet')}}" class="btn btn-info">Cadastrar Pets</a>
-          <a  href="{{ url_for('getPet')}}" class="btn btn-info">Mostrar pets cadastrados</a>
+          <h5 class="card-title">BOA NOITE COMPANHEIRO</h5>
+          <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint veniam officia animi, fugiat non dolorem.</p>
+          <a style="background-color:#4CAF50; border-color: #4CAF50;"  href="#" class="btn btn-info">Cadastrar</a>
         </div>
       </div>
     </div>
-    <div class="col mb-4">
+    <div style="padding-right: 0.1%;" class="col mb-4">
       <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="https://images.unsplash.com/photo-1518155317743-a8ff43ea6a5f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">testando</p>
-          <a  href="#" class="btn btn-info">Serviço3</a>
+          <h5 class="card-title">À BORDO</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aliquid fugit qui dolorem consequatur.</p>
+          <a style="background-color:#4CAF50; border-color: #4CAF50;" href="#" class="btn btn-info">Cadastrar</a>
         </div>
       </div>
     </div>
-    <div class="col mb-4">
+    <div style="padding-right: 0.1%;" class="col mb-4">
       <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="https://images.unsplash.com/photo-1517331156700-3c241d2b4d83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=868&q=80" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in</p>
-          <a  href="#" class="btn btn-info">Serviço4</a>
+          <h5 class="card-title">ÁREA MEU PET</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet esse similique tenetur molestiae officiis.</p>
+          <a style="background-color:#4CAF50; border-color: #4CAF50;" href="{{ url_for('cadastroPet')}}" class="btn btn-info">Cadastrar Pets</a>
+          <p></p>
+          <a style="background-color:#4CAF50; border-color: #4CAF50;" href="{{ url_for('getPet')}}" class="btn btn-info">Mostrar pets cadastrados</a>
         </div>
       </div>
     </div>

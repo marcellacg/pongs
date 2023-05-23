@@ -14,7 +14,7 @@ from models.pet import Pet
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://pweb:123456@localhost:5432/petconfy-services"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://marcella:409014@localhost:5432/petconfy-services"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -103,21 +103,22 @@ def getPet():
         return render_template('pets.html', pets=pets)
 
 
-@app.route('/pets/', methods=['DELETE'])
+@app.route('/pets/<int:id>', methods=['GET', 'DELETE'])
 @login_required
-def deletePet():
+def deletePet(id):
     if current_user.is_authenticated:
-
-        pet = Pet.query.first()
-        if pet:
-            # db.session.delete(pet)
-            # db.session.commit()
-            # return redirect(url_for('home'))
-            return pet.id
+        user_id = current_user.id
+        print(user_id)
+        #pets = Pet.query.filter_by(user_id=user_id).all()
+        pet = Pet.query.get(id)
+        if pet is not None:
+            db.session.delete(pet)
+            db.session.commit()
+            return 'PET EXCLUÍDO'
         else:
-            return flash('Nao encontrado')
+            return 'PET NÃO ENCONTRADO'
     else:
-        return redirect(url_for('forbidden'))
+        return 'SEM AUTORIZAÇÃO', 405
 
 
 if __name__ == "__main__":

@@ -33,7 +33,7 @@ class FormularioPet(FlaskForm):
                               validators.Regexp(
                                   '[a-zA-Z]+', message="Nome deve conter somente letras"),
                               validators.Length(
-                                  min=2, max=25, message="Nome deve ter entre 5 e 25 characteres")
+                                  min=3, max=25, message="Nome deve ter entre 3 e 25 characteres")
                           ])
     idade = StringField('idade',
                         [

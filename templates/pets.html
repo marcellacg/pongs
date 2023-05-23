@@ -66,11 +66,35 @@
       <p class="card-text">Idade: {{pet.idade}} ano(s)</p>
       <p class="card-text">Espécie: {{pet.especie}}</p>
       <p class="card-text">Observações: {{pet.observacoes}}</p>
-      <a href="{{ url_for('deletePet') }}" class="btn btn-danger">Deletar</a>
-      <a href="#" class="btn btn-primary">Editar</a>
+      <a href="{{ url_for('deletePet', id=pet.id) }}" class="btn btn-danger">Deletar</a>
+      <a href="" class="btn btn-primary" data-toggle="modal" data-target="#meuModal">Editar</a>
 
     </div>
   </div>
+
+  <div id="meuModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Título do modal</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <p>Conteúdo no corpo do modal.</p>
+          <p>Aqui você pode inserir todo o conteúdo necessário.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary">Salvar Alterações</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
   {% endfor %}
   <br>
   <h4 style="color: rgb(50, 50, 224); text-align: center; display: inline-block; margin-left: 50%; text-decoration: none;"><a href="{{ url_for('home') }}">Voltar</a></h4>
