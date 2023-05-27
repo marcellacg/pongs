@@ -47,7 +47,7 @@ class FormularioPet(FlaskForm):
                               validators.Regexp(
                                   '[a-zA-Z]+', message="Espécie deve conter somente letras")
                           ])
-    observacoes = StringField('observacoes',
+    observacoes = StringField('observacoes (opcional)',
                               [
                                   validators.Regexp(
                                       '^[a-zA-Z0-9_.-]*$', message=""),
