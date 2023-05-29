@@ -125,19 +125,29 @@ def deletePet(id):
 @app.route('/pets/<int:id>', methods=['GET', 'POST'])
 @login_required
 def updatePet(id):
-    if current_user.is_authenticated:
-        user_id = current_user.id
+    user_id = current_user.id if current_user.is_authenticated else None
+    pet = Pet.query.get(id)
+
+    if not pet:
+        flash('PET NÃO ENCONTRADO', 'error')
+        return redirect(url_for('pets'))
+
+    if pet.user_id != user_id:
+        flash('PERMISSÃO NEGADA', 'error')
+        return redirect(url_for('pets'))
+
+    if request.method == 'POST':
         nome = request.form['nome']
         idade = request.form['idade']
         especie = request.form['especie']
         observacoes = request.form['observacoes']
-        pet = Pet.query.get(id)
         pet.nome = nome
         pet.idade = idade
         pet.especie = especie
         pet.observacoes = observacoes
         db.session.commit()
-        pets = Pet.query.filter_by(user_id=user_id).all()
+
+    pets = Pet.query.filter_by(user_id=user_id).all()
     return render_template('pets.html', pets=pets)
 
 
