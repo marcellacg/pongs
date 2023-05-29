@@ -87,11 +87,11 @@
         <div class="modal-body">
           <form method="post" action="{{url_for('updatePet', id=pet.id)}}">
             <label>Nome: </label>
-            <input type="text" class="form-control" aria-label="Default" name="nome">
+            <input type="text" class="form-control" aria-label="Default" name="nome" required>
             <label>Idade: </label>
-            <input type="text" class="form-control" aria-label="Default" name="idade">
+            <input type="text" class="form-control" aria-label="Default" name="idade" required>
             <label>Espécie: </label>
-            <input type="text" class="form-control" aria-label="Default" name="especie">
+            <input type="text" class="form-control" aria-label="Default" name="especie" required>
             <label>Observações (opcional): </label>
             <input type="text" class="form-control" aria-label="Default" name="observacoes">
             <div class="modal-footer">
