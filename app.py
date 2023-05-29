@@ -125,9 +125,11 @@ def deletePet(id):
 @app.route('/pets/<int:id>', methods=['GET', 'POST'])
 @login_required
 def updatePet(id):
-    user_id = current_user.id if current_user.is_authenticated else None
+    if current_user.is_authenticated:
+        user_id = current_user.id
+    else:
+        return None
     pet = Pet.query.get(id)
-
     if not pet:
         flash('PET NÃO ENCONTRADO', 'error')
         return redirect(url_for('pets'))
