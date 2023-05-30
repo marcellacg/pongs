@@ -87,13 +87,13 @@
         <div class="modal-body">
           <form method="post" action="{{url_for('updatePet', id=pet.id)}}">
             <label>Nome: </label>
-            <input type="text" class="form-control" aria-label="Default" name="nome" required>
+            <input type="text" class="form-control" aria-label="Default" name="nome" value="{{pet.nome}}" required>
             <label>Idade: </label>
-            <input type="text" class="form-control" aria-label="Default" name="idade" required>
+            <input type="number" min="0" class="form-control" aria-label="Default" name="idade" value="{{pet.idade}}" required>
             <label>Espécie: </label>
-            <input type="text" class="form-control" aria-label="Default" name="especie" required>
+            <input type="text" class="form-control" aria-label="Default" name="especie" value="{{pet.especie}}" required>
             <label>Observações (opcional): </label>
-            <input type="text" class="form-control" aria-label="Default" name="observacoes">
+            <input type="text" class="form-control" aria-label="Default" name="observacoes" value="{{pet.observacoes}}">
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
               <button type="submit" class="btn btn-primary" value="Submit">Salvar Alterações</button>
