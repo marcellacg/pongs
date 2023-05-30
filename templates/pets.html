@@ -69,11 +69,12 @@
       <p class="card-text">Idade: {{pet.idade}} ano(s)</p>
       <p class="card-text">Espécie: {{pet.especie}}</p>
       <p class="card-text">Observações: {{pet.observacoes}}</p>
-      <a href="{{ url_for('deletePet', id=pet.id) }}" class="btn btn-danger">Deletar</a>
+      <a href="" class="btn btn-danger" data-toggle="modal" data-target="#meuModal1{{ pet.id }}">Deletar</a>
       <a href="" class="btn btn-primary" data-toggle="modal" data-target="#meuModal{{ pet.id }}">Editar</a>
 
     </div>
   </div>
+
   <div id="meuModal{{ pet.id }}" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -86,24 +87,41 @@
         <div class="modal-body">
           <form method="post" action="{{url_for('updatePet', id=pet.id)}}">
             <label>Nome: </label>
-            <input type="text" class="form-control" aria-label="Default" value="{{pet.nome}}" name="nome" required>
+            <input type="text" class="form-control" aria-label="Default" name="nome" required>
             <label>Idade: </label>
-            <input type="number" min="0" class="form-control" aria-label="Default" value="{{pet.idade}}" name="idade" required>
+            <input type="text" class="form-control" aria-label="Default" name="idade" required>
             <label>Espécie: </label>
-            <input type="text" class="form-control" aria-label="Default" value="{{pet.especie}}" name="especie" required>
+            <input type="text" class="form-control" aria-label="Default" name="especie" required>
             <label>Observações (opcional): </label>
             <input type="text" class="form-control" aria-label="Default" name="observacoes">
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-              <button type="submit"  class="btn btn-primary" value="Submit">Salvar Alterações</button>
+              <button type="submit" class="btn btn-primary" value="Submit">Salvar Alterações</button>
             </div>
           </form>
         </div>
-
-
       </div>
     </div>
   </div>
+
+  <div id="meuModal1{{ pet.id }}" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Editar dados</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+              <a href="{{ url_for('deletePet', id=pet.id) }}" class="btn btn-danger">Confirmar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   {% endfor %}
   <br>
   <h4 style="color: rgb(50, 50, 224); text-align: center; display: inline-block; margin-left: 50%; text-decoration: none;"><a href="{{ url_for('home') }}">Voltar</a></h4>
