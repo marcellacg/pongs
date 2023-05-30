@@ -52,7 +52,7 @@ class FormularioPet(FlaskForm):
                                   validators.Regexp(
                                       '^[a-zA-Z0-9_.-]*$', message=""),
                                   validators.Length(
-                                      min=0, max=500, message="As observações devem ter no máximo 500 palavras")
+                                      max=500, message="As observações devem ter no máximo 500 palavras")
                               ])
     user_id = IntegerField()
     submit = SubmitField('cadastrar')
