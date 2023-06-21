@@ -103,6 +103,11 @@ def getPet():
         return render_template('pets.html', pets=pets)
 
 
+@app.route('/agenda')
+@login_required
+def agenda():
+    return render_template('agenda.html')
+
 @app.route('/pets/<int:id>', methods=['GET', 'DELETE'])
 @login_required
 def deletePet(id):

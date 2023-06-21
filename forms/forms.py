@@ -56,3 +56,14 @@ class FormularioPet(FlaskForm):
                               ])
     user_id = IntegerField()
     submit = SubmitField('cadastrar')
+
+
+class RegistroServicoUm(FlaskForm):
+    data = StringField('data', validators=[DataRequired('Por favor, insira a data.')])
+
+    hora = StringField('hora', validators=[DataRequired('Por favor, insira a hora.')])
+    
+    telefone = StringField('telefone com DDD', [validators.Regexp('^[0-9]*$', message="telefone deve conter somente números"),
+                            validators.Length(min=1, max=3, message="telefone deve ter no máximo 11 dígitos")])
+
+    submit = SubmitField('registrar')
