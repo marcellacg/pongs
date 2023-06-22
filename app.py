@@ -5,11 +5,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from flask_login import LoginManager, login_manager, current_user, login_required, login_user, logout_user
 from flask import Flask, render_template, flash, redirect, url_for, request
-from forms.forms import FormularioRegistro, FormularioLogin, FormularioPet
+from forms.forms import FormularioRegistro, FormularioLogin, FormularioPet, RegistroServicoUm
 from helpers.database import migrate, db
 
 from models.user import User
 from models.pet import Pet
+from models.passeioparque import PasseioParque
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -103,11 +104,6 @@ def getPet():
         return render_template('pets.html', pets=pets)
 
 
-@app.route('/agenda')
-@login_required
-def agenda():
-    return render_template('agenda.html')
-
 @app.route('/pets/<int:id>', methods=['GET', 'DELETE'])
 @login_required
 def deletePet(id):
@@ -157,6 +153,35 @@ def updatePet(id):
     pets = Pet.query.filter_by(user_id=user_id).all()
     return render_template('pets.html', pets=pets)
 
+
+@app.route('/passeioparque', methods=['POST', 'GET'])
+@login_required
+def passeioparque():
+    form = RegistroServicoUm()
+    if form.validate_on_submit():
+        user_id = current_user.id
+        user = User.query.get(user_id)
+        passeioparque = PasseioParque(data_inicial=form.data_inicial.data, data_final=form.data_final.data,
+                    hora_inicial=form.hora_inicial.data, hora_final=form.hora_final.data, telefone=form.telefone.data, user=user)
+        db.session.add(passeioparque)
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('servicoum.html', form=form)
+
+@app.route('/perfil', methods=['GET'])
+@login_required
+def perfil():
+    if current_user.is_authenticated:
+        user_id = current_user.id
+        # Listar os pets do usuário logado
+        perfil = PasseioParque.query.filter_by(user_id=user_id).all()
+        return render_template('perfil.html', perfil=perfil)
+
+
+@app.route('/agenda')
+@login_required
+def agenda():
+    return render_template('agenda.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
