@@ -40,6 +40,33 @@ def load_user(user_id):
 def home():
     return render_template('user.html')
 
+@app.route('/admin')
+@login_required
+def admin():
+    user_id = current_user.id
+    if current_user.is_authenticated == True and user_id == 1:
+        users = User.query.all()
+        return render_template('adm.html', users=users)
+    else:
+        return render_template('forbidden')
+
+@app.route('/admin<string:nome>', methods=['GET'])
+@login_required
+def procurar(nome):
+  print('ok')
+  user_id = current_user.id
+  if current_user.is_authenticated == True and user_id == 1:
+    nome = request.form.get('nome')
+    if nome is not None:
+        users = User.query.filter_by(nome)
+    else:
+        users = User.query.all()
+    
+    return render_template('adm.html', users=users) 
+  
+  else:
+    return render_template('forbidden.html')
+
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
