@@ -44,28 +44,25 @@ def home():
 @login_required
 def admin():
     user_id = current_user.id
-    if current_user.is_authenticated == True and user_id == 1:
+    if current_user.is_authenticated and user_id == 1:
         users = User.query.all()
         return render_template('adm.html', users=users)
     else:
-        return render_template('forbidden')
+        return render_template('forbidden.html')
 
-@app.route('/admin<string:nome>', methods=['GET'])
+@app.route('/admin/search', methods=['GET'])
 @login_required
-def procurar(nome):
-  print('ok')
-  user_id = current_user.id
-  if current_user.is_authenticated == True and user_id == 1:
-    nome = request.form.get('nome')
-    if nome is not None:
-        users = User.query.filter_by(nome)
+def procurar():
+    user_id = current_user.id
+    if current_user.is_authenticated and user_id == 1:
+        nome = request.args.get('nome')
+        if nome is not None:
+            users = User.query.filter(User.nome.like(f"%{nome}%")).all()
+        else:
+            users = User.query.all()
+        return render_template('adm.html', users=users)
     else:
-        users = User.query.all()
-    
-    return render_template('adm.html', users=users) 
-  
-  else:
-    return render_template('forbidden.html')
+        return render_template('forbidden.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])

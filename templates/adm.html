@@ -107,20 +107,20 @@
           {% endif %}
         </nav>
       </header>
-    {% if current_user.is_authenticated %}
-    {% for usr in users %}
-  <div class="card w-50">
-    <div class="card-body">
-    <h5 class="card-title">Usuário:</h5>
-      <p class="card-text">Nome: {{usr.nome}}</p>
-      <p class="card-text">Email: {{usr.email}}</p>
-      <p class="card-text">Endereco: {{usr.endereco}}</p>
-      <p class="card-text">Entrada em: {{usr.entrada_em}}</p>
-      <a href="" class="btn btn-danger" data-toggle="modal" data-target="#">Deletar</a>
-      <a href="" class="btn btn-primary" data-toggle="modal" data-target="#">Editar</a>
+      {% if current_user.is_authenticated %}
+      {% for usr in users %}
+    <div class="card w-50">
+      <div class="card-body">
+      <h5 class="card-title">Usuário:</h5>
+        <p class="card-text">Nome: {{usr.nome}}</p>
+        <p class="card-text">Email: {{usr.email}}</p>
+        <p class="card-text">Endereco: {{usr.endereco}}</p>
+        <p class="card-text">Entrada em: {{usr.entrada_em}}</p>
+        <a href="" class="btn btn-danger" data-toggle="modal" data-target="#">Deletar</a>
+        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#">Editar</a>
+      </div>
     </div>
-  </div>
-  {% endfor %}
-  {% endif %}
+    {% endfor %}
+    {% endif %}
 </body>
 </html
