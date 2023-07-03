@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/b42168277e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+  <style>
+
+    div{
+
+    text-align: center;
+    margin-top: 1%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    display: inline-block;
+    padding-left: 3%;
+    padding-right: 3%;
+    }
+    
+
+    #teste{
+    display: inline-block;
+    position: relative;
+    bottom: 0;
+    padding-right: 0;
+    background-color: #4CAF50;
+    width: 100%;
+    height: 150px;  
+    margin-top: 10%;
+    }
+
+    .green{
+    background-color: #4CAF50;
+    height: 150px;
+    }
+
+    </style>
+</head>
+<body style="background-color: #f6fdf6;">
+    <div class="container-fluid px-0">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <img class="d-block img-fluid" src="https://images.unsplash.com/photo-1568393691622-c7ba131d63b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1031&q=80"  alt="First slide">
+                    <div class="carousel-caption justify-content-center">
+                        <div class="col-10 mx-auto text-center">
+                            <h2 class="mbr-fonts-style display-1">SEJA UM CONFY-AMIGO!</h2>
+                            <p class="lead mbr-text mbr-fonts-style display-5"></p>
+                            <div class="mbr-section-btn" buttons="0">
+                            <a class="btn btn-success display-4" href="{{ url_for('register') }}">CADASTRE-SE!</a>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3">
+        <div style="padding-right: 0.1%;" class="col mb-4">
+          <div style="background-color: #f0fff0;" class="card h-100">
+            <img src="https://cdn-icons-png.flaticon.com/512/9031/9031219.png" class="card-img-top" alt="Serviço passeio no parque">
+            <div class="card-body">
+              <h5 class="card-title">PASSEIO NO PARQUE</h5>
+              <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore quod obcaecati debitis harum voluptatem.</p>
+              <sub>Icon by Freepik</sub>      
+            </div>
+          </div>
+        </div>
+        <div style="padding-right: 0.1%;" class="col mb-4">
+          <div style="background-color: #f0fff0;" class="card h-100">
+            <img src="https://cdn-icons-png.flaticon.com/512/6462/6462524.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">DIA LEGAL</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat ullam magni cumque perferendis ipsa.</p>
+              <sub>Icon by Freepik</sub>         
+            </div>
+          </div>
+          
+        </div>
+        <div style="padding-right: 0.1%;" class="col mb-4">
+          <div style="background-color: #f0fff0;" class="card h-100">
+            <img src="https://cdn-icons-png.flaticon.com/512/3047/3047827.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">BOA NOITE COMPANHEIRO</h5>
+              <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint veniam officia animi, fugiat non dolorem.</p>
+              <sub>Icon by Freepik</sub>
+            </div>
+          </div>
+        </div>
+        <div style="padding-right: 0.1%;" class="col mb-4">
+          <div style="background-color: #f0fff0;" class="card h-100">
+            <img src="https://cdn-icons-png.flaticon.com/512/3636/3636524.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">À BORDO</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aliquid fugit qui dolorem consequatur.</p>
+              <sub>Icon by Freepik</sub>
+            </div>
+          </div>
+        </div>
+    <footer id="teste">
+      
+        <div id="footer_content">
+          <br>
+          <div id="footer_contacts">
+            <i class="fa-solid fa-dog fa-xl" style="color: #f8f1f1;"> | PetConfy</i>
+          </div>
+          <hr>
+          <div id="footer_social_media">
+            <a href="#" class="footer-link" style="color: white;" id="instagram">Instagram
+              <i class="fa-brands fa-instagram"> | </i>
+          </a>
+          <a href="#" class="footer-link" style="color: white;" id="facebook">Facebook
+              <i class="fa-brands fa-facebook-f"> | </i>
+          </a>
+          <a href="" class="footer-link" style="color: white;" id="twitter">Twitter
+            <i class="fa-brands fa-twitter"> | </i>
+          </a>
+          <a href="" class="footer-link" style="color: white;" id="whatsapp">Whatsapp
+            <i class="fa-brands fa-whatsapp"> | </i>
+          </a>
+          </div>
+        </div>
+        
+      </footer>
+</body>
+</html>

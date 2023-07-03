@@ -50,6 +50,7 @@
   <header>
     <nav class="navbar navbar-dark bg-inverse" style="background-color:#4CAF50;">
       <a class="navbar-brand" href="{{ url_for('home') }}">Página Inicial <i class="fa-solid fa-dog fa-sm" style="color: #f8f1f1;"></i></a>
+      <a class="navbar-brand" style="size: 15px;" href="{{ url_for('login') }}">login</a>
       {% if current_user.id == 1 %}
       <a class="nav-link" style="color: #f8f1f1;" href="{{ url_for('admin') }}">Admin Area</a>
       {% endif %}
@@ -85,6 +86,7 @@
   </header>
     <div>
         {% if current_user.is_anonymous %}
+        {% extends 'homepage.html' %}
         <br>
         <a href="{{ url_for('login') }}">Login</a>
         {% else %}

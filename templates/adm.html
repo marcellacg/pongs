@@ -108,6 +108,7 @@
         </nav>
       </header>
       {% if current_user.is_authenticated %}
+      {% if users %}
       {% for usr in users %}
     <div class="card w-50">
       <div class="card-body">
@@ -121,6 +122,9 @@
       </div>
     </div>
     {% endfor %}
+      {% else %}
+        <p>Nenhum usuário encontrado.</p>
+      {% endif %}
     {% endif %}
 </body>
-</html
+</html>
